@@ -5,7 +5,7 @@ function playTone(selectPart){
   //console.log(version);
   var startT = (selectPart * 1) - 1;
   //stopT  = startT + 1;
-  var stopT  = startT + 0.6;
+  var stopT  = startT + 1.0;
   //console.log("startT = " + startT);
   audio.currentTime = startT;
   //audio.play();
@@ -22,7 +22,7 @@ function playTone(selectPart){
   //       },10);
   // }, 50);
 
-  var innerPlay = setTimeout(function(){ audio.play();}, 100);
+  var innerPlay = setTimeout(function(){ audio.play();}, 10);
 
   var checkInterval = setInterval(function(){
     if(audio.currentTime >= stopT){
@@ -52,5 +52,5 @@ function playList1(vocalList){
   var secondTone = setTimeout(function(){ playTone(vocalList[1]);}, 1500);
   var thirdTone  = setTimeout(function(){ playTone(vocalList[2]);}, 3000);
   var fourthTone = setTimeout(function(){ playTone(vocalList[3]);}, 4500);
-  var fifthTone  = setTimeout(function(){ playTone(vocalList[3]);}, 6000);
+  var fifthTone  = setTimeout(function(){ playTone(vocalList[4]);}, 6000);
 }
