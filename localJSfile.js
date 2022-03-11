@@ -4,7 +4,7 @@
 
 const jsPsych = initJsPsych();
 var audio= document.getElementById("myaudio_oneHundred_tones");
-//var tonesToPlay = [1,80,1,1];
+console.log("setting up audiocontext at ver 3 ");
 
 function initialStuff(){
     var timeline = [];
@@ -28,7 +28,6 @@ function initialStuff(){
     // *************************************
     // setup the audio context
     // *************************************
-    console.log("setting up audiocontext at ver 3 ");
     const audioContext = new AudioContext();
     const element = document.querySelector("audio");
     const source = audioContext.createMediaElementSource(element);
