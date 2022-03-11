@@ -78,7 +78,7 @@ function initialStuff(){
                 console.log("STOPPED B");
               },1000);
 
-            },1000);
+            },1500);
 
           // *************************************
           // THIRD Tone
@@ -99,7 +99,7 @@ function initialStuff(){
                  console.log("STOPPED C");
                },1000);
 
-             },2000);
+             },3000);
 
            // *************************************
            // FOURTH Tone
@@ -120,7 +120,7 @@ function initialStuff(){
                   console.log("STOPPED D");
                 },1000);
 
-              },3000);
+              },4500);
 
         };
 
@@ -133,7 +133,7 @@ function initialStuff(){
       //playList1([ tonesToPlay[0],tonesToPlay[1],tonesToPlay[2],tonesToPlay[3] ]);
       playTheTones([ tonesToPlay[0],tonesToPlay[1],tonesToPlay[2],tonesToPlay[3] ]);
       jsPsych.pauseExperiment();
-      setTimeout(jsPsych.resumeExperiment, 5000);
+      setTimeout(jsPsych.resumeExperiment, 6000);
     };
 
     // *************************************
