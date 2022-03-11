@@ -4,7 +4,7 @@
 
 const jsPsych = initJsPsych();
 //var audio = document.getElementById("myaudio_oneHundred_tones");
-console.log("setting up as ver 5 ");
+console.log("setting up as ver 6 ");
 
 function initialStuff(){
     var timeline = [];
@@ -43,7 +43,24 @@ function initialStuff(){
          // *************************************
          // FIRST Tone
          // *************************************
-         element.currentTime = vocalList[0] - 1;
+         // element.currentTime = vocalList[0] - 1;
+         // gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
+         //
+         // setTimeout(function(){
+         //   gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
+         // },900);
+         //
+         // //element.play();
+         // element.start();
+         // console.log("PLAYING A   " + element.currentTime);
+         // var k = setInterval(function(){
+         //   //element.pause();
+         //   element.stop();
+         //   clearInterval(k);
+         //   console.log("STOPPED A");
+         // },1000);
+
+         source.currentTime = vocalList[0] - 1;
          gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
 
          setTimeout(function(){
@@ -51,11 +68,11 @@ function initialStuff(){
          },900);
 
          //element.play();
-         element.start();
-         console.log("PLAYING A   " + element.currentTime);
+         source.start();
+         console.log("PLAYING A   " + source.currentTime);
          var k = setInterval(function(){
            //element.pause();
-           element.stop();
+           source.stop();
            clearInterval(k);
            console.log("STOPPED A");
          },1000);
