@@ -3,7 +3,7 @@
 // ************************************************************
 
 const jsPsych = initJsPsych();
-console.log("setting up as ver 2 ");
+console.log("setting up as ver 3 ");
 
 function initialStuff(){
     var timeline = [];
@@ -46,7 +46,7 @@ function initialStuff(){
          gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
 
          setTimeout(function(){
-           gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
+           gainNode.gain.exponentialRampToValueAtTime(0.000001, audioContext.currentTime + 0.1);
            console.log("ramp down started @ " + audioContext.currentTime);
          },900);
 
@@ -66,7 +66,7 @@ function initialStuff(){
               gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
 
               setTimeout(function(){
-                gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
+                gainNode.gain.exponentialRampToValueAtTime(0.000001, audioContext.currentTime + 0.1);
               },900);
 
               element.play();
@@ -87,7 +87,7 @@ function initialStuff(){
                gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
 
                setTimeout(function(){
-                 gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
+                 gainNode.gain.exponentialRampToValueAtTime(0.000001, audioContext.currentTime + 0.1);
                },900);
 
                element.play();
@@ -108,7 +108,7 @@ function initialStuff(){
                 gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
 
                 setTimeout(function(){
-                  gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
+                  gainNode.gain.exponentialRampToValueAtTime(0.000001, audioContext.currentTime + 0.1);
                 },900);
 
                 element.play();
