@@ -28,7 +28,7 @@ function initialStuff(){
     // *************************************
     // setup the audio context
     // *************************************
-    console.log("setting up audiocontext at ver 1 ");
+    console.log("setting up audiocontext at ver 2 ");
     const audioContext = new AudioContext();
     const element = document.querySelector("audio");
     const source = audioContext.createMediaElementSource(element);
@@ -130,7 +130,6 @@ function initialStuff(){
     function playTheTonesFunction(){
       tonesToPlay = createToneList(deviant_tone, standard_tone );
       console.log(tonesToPlay[0] + " " + tonesToPlay[1] + " "  + tonesToPlay[2] + " "  + tonesToPlay[3]);
-      //playList1([ tonesToPlay[0],tonesToPlay[1],tonesToPlay[2],tonesToPlay[3] ]);
       playTheTones([ tonesToPlay[0],tonesToPlay[1],tonesToPlay[2],tonesToPlay[3] ]);
       jsPsych.pauseExperiment();
       setTimeout(jsPsych.resumeExperiment, 6000);
@@ -162,12 +161,16 @@ function initialStuff(){
       if (userIsCorrect){
         console.log("CORRECT ");
         deviant_tone = deviant_tone - present_decrement;
-        if (deviant_tone <= standard_tone) {deviant_tone = standard_tone}
+        if (deviant_tone < standard_tone){
+          deviant_tone = standard_tone;
+        }
         latest_direction = 'D';
       }else{
         console.log("INCORRECT ");
         deviant_tone = deviant_tone + present_increment;
-        if (deviant_tone > init_deviant_tone) {deviant_tone = init_deviant_tone}
+        if (deviant_tone > init_deviant_tone){
+          deviant_tone = init_deviant_tone;
+        }
         latest_direction = 'U';
       }
 
