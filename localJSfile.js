@@ -7,13 +7,10 @@ var audio= document.getElementById("myaudio_oneHundred_tones");
 //var tonesToPlay = [1,80,1,1];
 
 function initialStuff(){
-
     var timeline = [];
     var loopTimeline = [];
-
     var tonesToPlay = [1,80,1,1];
     var deviant_location = '-';
-
     var standard_tone = 1;
     var init_deviant_tone = standard_tone + 250;
     var deviant_tone = init_deviant_tone;
@@ -22,88 +19,24 @@ function initialStuff(){
     var later_decrement = 10;
     var later_increment = 30;
     var reversal_limit = 5;     //should be 20
-
     var present_decrement = init_decrement;
     var present_increment = init_increment;
-
     var previous_direction = '-';
     var latest_direction   = '-';
-
     var reversal_count = 0;
 
-    const hello_trial = {
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: 'Listen to the Tones',
-      choices: "NO_KEYS",
-      trial_duration: 2000
-    };
-    timeline.push(hello_trial);
-
-// ******** REPEAT THIS UNTIL Q PRESSED *******************
-    const star_trial_1 = {
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: '***** 1 ******',
-      choices: "NO_KEYS",
-      trial_duration: 500
-    };
-
-    const star_trial_2 = {
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: 'press Q to quit loop or E to continue',
-      choices: ['q','w'],
-      response_ends_trial: true,
-      //trial_duration: 1000,
-    };
-
-    function endTheLoopFunc() {
-      var lastKeypressStringify = JSON.stringify(jsPsych.data.getLastTrialData());
-      var userPressedKey = lastKeypressStringify.substring(lastKeypressStringify.indexOf('"response":') + 11).substring(1,2);
-      console.log('userPressedKey = ' + userPressedKey  + '    ' + lastKeypressStringify);
-      if (userPressedKey === 'q'){
-        jsPsych.endCurrentTimeline();
-      }
-    };
-
-    var endTheLoop = {
-      type: jsPsychCallFunction,
-      func: endTheLoopFunc
-    };
-
-    var loop_node_1 = {
-      timeline: [star_trial_1, star_trial_2, endTheLoop],
-      repetitions: 60
-    };
-    timeline.push(loop_node_1);
-// ************************************************
-
-
-
-
-
-
     function playTheTonesFunction(){
-      // var version = jsPsych.version();
-      // console.log("version = " + version);
-      // var time = jsPsych.getTotalTime();
-      // console.log("entry = " + time);
-
       tonesToPlay = createToneList(deviant_tone, standard_tone );
-      //console.log("reporting location "  + tonesToPlay[4]);
       console.log(tonesToPlay[0] + " " + tonesToPlay[1] + " "  + tonesToPlay[2] + " "  + tonesToPlay[3]);
-
-      playList1([ tonesToPlay[0],tonesToPlay[1],tonesToPlay[2],tonesToPlay[3] ]);
-
+      //playList1([ tonesToPlay[0],tonesToPlay[1],tonesToPlay[2],tonesToPlay[3] ]);
+      playTheTones([ tonesToPlay[0],tonesToPlay[1],tonesToPlay[2],tonesToPlay[3] ])
       jsPsych.pauseExperiment();
-      setTimeout(jsPsych.resumeExperiment, 8000);
+      setTimeout(jsPsych.resumeExperiment, 5000);
     };
 
     function calculateTheValue(){
-      //console.log("reporting " + tonesToPlay[1] + "    " + tonesToPlay[4]);
-
       var lastKeypressStringify = JSON.stringify(jsPsych.data.getLastTrialData());
       var userPressedKey = lastKeypressStringify.substring(lastKeypressStringify.indexOf('"response":') + 11).substring(1,2);
-      //console.log('userPressedKey = ' + userPressedKey);
-
       var userIsCorrect = false;
 
       if (userPressedKey === 'm'){
@@ -123,19 +56,13 @@ function initialStuff(){
 
       if (userIsCorrect){
         console.log("CORRECT ");
-        //deviant_tone = deviant_tone - init_decrement;
         deviant_tone = deviant_tone - present_decrement;
-
         if (deviant_tone <= standard_tone) {deviant_tone = standard_tone}
-
         latest_direction = 'D';
       }else{
         console.log("INCORRECT ");
-        //deviant_tone = deviant_tone + init_increment;
         deviant_tone = deviant_tone + present_increment;
-
         if (deviant_tone > init_deviant_tone) {deviant_tone = init_deviant_tone}
-
         latest_direction = 'U';
       }
 
@@ -156,6 +83,20 @@ function initialStuff(){
       previous_direction = latest_direction;
     };
 
+// ***********************************************************************************
+// Experement begins here
+// ***********************************************************************************
+    const hello_trial = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: 'Listen to the Tones',
+      choices: "NO_KEYS",
+      trial_duration: 2000
+    };
+    timeline.push(hello_trial);
+
+// ***********************************************************************************
+// This is the trial loop part to play tones then calculate the next pattern
+// ***********************************************************************************
     var playTheTonesTrial = {
          type: jsPsychCallFunction,
          func: playTheTonesFunction
@@ -178,7 +119,6 @@ function initialStuff(){
        repetitions: 60
      };
      timeline.push(loop_node_2);
-
 
      const goodbye_trial = {
        type: jsPsychHtmlKeyboardResponse,
