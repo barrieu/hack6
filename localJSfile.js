@@ -4,7 +4,7 @@
 
 const jsPsych = initJsPsych();
 //var audio = document.getElementById("myaudio_oneHundred_tones");
-console.log("setting up as ver 6 ");
+console.log("setting up as ver 7 ");
 
 function initialStuff(){
     var timeline = [];
@@ -29,7 +29,8 @@ function initialStuff(){
     // setup the audio context
     // *************************************
     const audioContext = new AudioContext();
-    const element = document.querySelector("audio");
+    //const element = document.querySelector("audio");
+    const element = new Audio("oodlesOfSounds.ogg");
     const source = audioContext.createMediaElementSource(element);
     const gainNode = audioContext.createGain();
     gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
@@ -43,24 +44,7 @@ function initialStuff(){
          // *************************************
          // FIRST Tone
          // *************************************
-         // element.currentTime = vocalList[0] - 1;
-         // gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
-         //
-         // setTimeout(function(){
-         //   gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
-         // },900);
-         //
-         // //element.play();
-         // element.start();
-         // console.log("PLAYING A   " + element.currentTime);
-         // var k = setInterval(function(){
-         //   //element.pause();
-         //   element.stop();
-         //   clearInterval(k);
-         //   console.log("STOPPED A");
-         // },1000);
-
-         source.currentTime = vocalList[0] - 1;
+         element.currentTime = vocalList[0] - 1;
          gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
 
          setTimeout(function(){
@@ -68,11 +52,11 @@ function initialStuff(){
          },900);
 
          //element.play();
-         source.start();
-         console.log("PLAYING A   " + source.currentTime);
+         element.start();
+         console.log("PLAYING A   " + element.currentTime);
          var k = setInterval(function(){
            //element.pause();
-           source.stop();
+           element.stop();
            clearInterval(k);
            console.log("STOPPED A");
          },1000);
