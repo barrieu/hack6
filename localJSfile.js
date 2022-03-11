@@ -18,7 +18,7 @@ function initialStuff(){
     var init_increment = 75;
     var later_decrement = 10;
     var later_increment = 30;
-    var reversal_limit = 5;     //should be 20
+    var reversal_limit = 20;     //should be 20
     var present_decrement = init_decrement;
     var present_increment = init_increment;
     var previous_direction = '-';
