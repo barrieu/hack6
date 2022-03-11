@@ -28,7 +28,7 @@ function initialStuff(){
     // *************************************
     // setup the audio context
     // *************************************
-    console.log("setting up audiocontext at ver 2 ");
+    console.log("setting up audiocontext at ver 3 ");
     const audioContext = new AudioContext();
     const element = document.querySelector("audio");
     const source = audioContext.createMediaElementSource(element);
