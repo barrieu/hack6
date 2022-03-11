@@ -25,15 +25,120 @@ function initialStuff(){
     var latest_direction   = '-';
     var reversal_count = 0;
 
+    // *************************************
+    // setup the audio context
+    // *************************************
+    console.log("setting up audiocontext at ver 1 ");
+    const audioContext = new AudioContext();
+    const element = document.querySelector("audio");
+    const source = audioContext.createMediaElementSource(element);
+    const gainNode = audioContext.createGain();
+    gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
+    source.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+
+    // *************************************
+    // playTheTones
+    // *************************************
+    function playTheTones(vocalList){
+         // *************************************
+         // FIRST Tone
+         // *************************************
+         element.currentTime = vocalList[0] - 1;
+         gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
+
+         setTimeout(function(){
+           gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
+         },900);
+
+         element.play();
+         console.log("PLAYING A   " + element.currentTime);
+         var k = setInterval(function(){
+           element.pause();
+           clearInterval(k);
+           console.log("STOPPED A");
+         },1000);
+
+         // *************************************
+         // SECOND Tone
+         // *************************************
+         setTimeout(function(){
+              element.currentTime = vocalList[1] - 1;
+              gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
+
+              setTimeout(function(){
+                gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
+              },900);
+
+              element.play();
+              console.log("PLAYING B   " + element.currentTime);
+              var k = setInterval(function(){
+                element.pause();
+                clearInterval(k);
+                console.log("STOPPED B");
+              },1000);
+
+            },1000);
+
+          // *************************************
+          // THIRD Tone
+          // *************************************
+          setTimeout(function(){
+               element.currentTime = vocalList[2] - 1;
+               gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
+
+               setTimeout(function(){
+                 gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
+               },900);
+
+               element.play();
+               console.log("PLAYING C   " + element.currentTime);
+               var k = setInterval(function(){
+                 element.pause();
+                 clearInterval(k);
+                 console.log("STOPPED C");
+               },1000);
+
+             },2000);
+
+           // *************************************
+           // FOURTH Tone
+           // *************************************
+           setTimeout(function(){
+                element.currentTime = vocalList[3] - 1;
+                gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
+
+                setTimeout(function(){
+                  gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
+                },900);
+
+                element.play();
+                console.log("PLAYING D   " + element.currentTime);
+                var k = setInterval(function(){
+                  element.pause();
+                  clearInterval(k);
+                  console.log("STOPPED D");
+                },1000);
+
+              },3000);
+
+        };
+
+    // *************************************
+    // playTheTonesFunction
+    // *************************************
     function playTheTonesFunction(){
       tonesToPlay = createToneList(deviant_tone, standard_tone );
       console.log(tonesToPlay[0] + " " + tonesToPlay[1] + " "  + tonesToPlay[2] + " "  + tonesToPlay[3]);
       //playList1([ tonesToPlay[0],tonesToPlay[1],tonesToPlay[2],tonesToPlay[3] ]);
-      playTheTones([ tonesToPlay[0],tonesToPlay[1],tonesToPlay[2],tonesToPlay[3] ])
+      playTheTones([ tonesToPlay[0],tonesToPlay[1],tonesToPlay[2],tonesToPlay[3] ]);
       jsPsych.pauseExperiment();
       setTimeout(jsPsych.resumeExperiment, 5000);
     };
 
+    // *************************************
+    // Calculate the values
+    // *************************************
     function calculateTheValue(){
       var lastKeypressStringify = JSON.stringify(jsPsych.data.getLastTrialData());
       var userPressedKey = lastKeypressStringify.substring(lastKeypressStringify.indexOf('"response":') + 11).substring(1,2);
