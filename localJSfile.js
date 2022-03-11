@@ -3,7 +3,7 @@
 // ************************************************************
 
 const jsPsych = initJsPsych();
-console.log("setting up as ver 1 ");
+console.log("setting up as ver 2 ");
 
 function initialStuff(){
     var timeline = [];
@@ -55,7 +55,7 @@ function initialStuff(){
          var k = setInterval(function(){
            element.pause();
            clearInterval(k);
-           console.log("STOPPED A @ " + element.currentTime));
+           console.log("STOPPED A @ " + element.currentTime);
          },1000);
 
          // *************************************
