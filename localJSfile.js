@@ -3,13 +3,13 @@
 // ************************************************************
 
 const jsPsych = initJsPsych();
-var audio= document.getElementById("myaudio_oneHundred_tones");
-console.log("setting up audiocontext at ver 3 ");
+//var audio = document.getElementById("myaudio_oneHundred_tones");
+console.log("setting up as ver 4 ");
 
 function initialStuff(){
     var timeline = [];
     var loopTimeline = [];
-    var tonesToPlay = [1,80,1,1];
+    var tonesToPlay = [1,1,1,1];
     var deviant_location = '-';
     var standard_tone = 1;
     var init_deviant_tone = standard_tone + 250;
