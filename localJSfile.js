@@ -3,8 +3,7 @@
 // ************************************************************
 
 const jsPsych = initJsPsych();
-//var audio = document.getElementById("myaudio_oneHundred_tones");
-console.log("setting up as ver 7 ");
+console.log("setting up as ver 8 ");
 
 function initialStuff(){
     var timeline = [];
@@ -51,12 +50,10 @@ function initialStuff(){
            gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
          },900);
 
-         //element.play();
-         element.start();
+         element.play();
          console.log("PLAYING A   " + element.currentTime);
          var k = setInterval(function(){
-           //element.pause();
-           element.stop();
+           element.pause();
            clearInterval(k);
            console.log("STOPPED A");
          },1000);
