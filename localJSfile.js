@@ -3,7 +3,7 @@
 // ************************************************************
 
 const jsPsych = initJsPsych();
-console.log("setting up as ver 8 ");
+console.log("setting up as ver 1 ");
 
 function initialStuff(){
     var timeline = [];
@@ -28,7 +28,6 @@ function initialStuff(){
     // setup the audio context
     // *************************************
     const audioContext = new AudioContext();
-    //const element = document.querySelector("audio");
     const element = new Audio("oodlesOfSounds.ogg");
     const source = audioContext.createMediaElementSource(element);
     const gainNode = audioContext.createGain();
@@ -48,6 +47,7 @@ function initialStuff(){
 
          setTimeout(function(){
            gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
+           console.log("ramp down started @ " + audioContext.currentTime);
          },900);
 
          element.play();
@@ -55,7 +55,7 @@ function initialStuff(){
          var k = setInterval(function(){
            element.pause();
            clearInterval(k);
-           console.log("STOPPED A");
+           console.log("STOPPED A @ " + element.currentTime));
          },1000);
 
          // *************************************
