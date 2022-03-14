@@ -3,7 +3,7 @@
 // ************************************************************
 
 const jsPsych = initJsPsych();
-console.log("setting up as ver 1 ");
+console.log("setting up as ver 2 ");
 
 function initialStuff(){
     var timeline = [];
@@ -44,10 +44,25 @@ function initialStuff(){
          // FIRST Tone
          // *************************************
          element.currentTime = vocalList[0] - 1;
-         gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
+         // gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
+         //
+         // setTimeout(function(){
+         //   gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
+         //   console.log("ramp down started @ " + audioContext.currentTime);
+         // },900);
+         //
+         // element.play();
+         // console.log("PLAYING A   " + element.currentTime);
+         // var k = setInterval(function(){
+         //   element.pause();
+         //   clearInterval(k);
+         //   console.log("STOPPED A @ " + element.currentTime);
+         // },1000);
+
+         gainNode.gain.exponentialRampToValueAtTime(1.0, 0.1);
 
          setTimeout(function(){
-           gainNode.gain.exponentialRampToValueAtTime(0.000001, audioContext.currentTime + 0.1);
+           gainNode.gain.exponentialRampToValueAtTime(0.001, 0.1);
            console.log("ramp down started @ " + audioContext.currentTime);
          },900);
 
@@ -59,15 +74,19 @@ function initialStuff(){
            console.log("STOPPED A @ " + element.currentTime);
          },1000);
 
+
+
          // *************************************
          // SECOND Tone
          // *************************************
          setTimeout(function(){
               element.currentTime = vocalList[1] - 1;
-              gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
+              //gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
+              gainNode.gain.exponentialRampToValueAtTime(1.0, 0.1);
 
               setTimeout(function(){
-                gainNode.gain.exponentialRampToValueAtTime(0.000001, audioContext.currentTime + 0.1);
+                //gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, 0.1);
               },900);
 
               element.play();
@@ -85,10 +104,13 @@ function initialStuff(){
           // *************************************
           setTimeout(function(){
                element.currentTime = vocalList[2] - 1;
-               gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
+               //gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
+               gainNode.gain.exponentialRampToValueAtTime(1.0, 0.1);
 
                setTimeout(function(){
-                 gainNode.gain.exponentialRampToValueAtTime(0.000001, audioContext.currentTime + 0.1);
+                 //gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
+                 gainNode.gain.exponentialRampToValueAtTime(0.001, 0.1);
+
                },900);
 
                element.play();
@@ -106,10 +128,13 @@ function initialStuff(){
            // *************************************
            setTimeout(function(){
                 element.currentTime = vocalList[3] - 1;
-                gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
+                //gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
+                gainNode.gain.exponentialRampToValueAtTime(1.0, 0.1);
 
                 setTimeout(function(){
-                  gainNode.gain.exponentialRampToValueAtTime(0.000001, audioContext.currentTime + 0.1);
+                  //gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
+                  gainNode.gain.exponentialRampToValueAtTime(0.001, 0.1);
+
                 },900);
 
                 element.play();
