@@ -3,7 +3,7 @@
 // ************************************************************
 
 const jsPsych = initJsPsych();
-console.log("setting up as ver 4 ");
+console.log("setting up as ver 5 ");
 
 function initialStuff(){
     var timeline = [];
@@ -32,9 +32,10 @@ function initialStuff(){
     const element = new Audio("250_1_hz_tones.ogg");
     const source = audioContext.createMediaElementSource(element);
     const gainNode = audioContext.createGain();
-    gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
+
     source.connect(gainNode);
     gainNode.connect(audioContext.destination);
+    gainNode.gain.value = 0;
 
     // *************************************
     // playTheTones
@@ -59,10 +60,10 @@ function initialStuff(){
          //   console.log("STOPPED A @ " + element.currentTime);
          // },1000);
 
-         gainNode.gain.exponentialRampToValueAtTime(1.0, 0.01);
+         gainNode.gain.setTargetAtTime(1.0, audioContext.currentTime, 0.01);
 
          setTimeout(function(){
-           gainNode.gain.exponentialRampToValueAtTime(0.001, element.currentTime + 0.01);
+           gainNode.gain.setTargetAtTime(0, audioContext.currentTime, 0.01);
            console.log("ramp down started @ " + element.currentTime);
          },900);
 
@@ -82,11 +83,11 @@ function initialStuff(){
          setTimeout(function(){
               element.currentTime = vocalList[1] - 1;
               //gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
-              gainNode.gain.exponentialRampToValueAtTime(1.0, 0.01);
+              gainNode.gain.setTargetAtTime(1.0, audioContext.currentTime, 0.01);
 
               setTimeout(function(){
                 //gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
-                gainNode.gain.exponentialRampToValueAtTime(0.001, element.currentTime + 0.01);
+                gainNode.gain.setTargetAtTime(0, audioContext.currentTime, 0.01);
               },900);
 
               element.play();
@@ -105,11 +106,11 @@ function initialStuff(){
           setTimeout(function(){
                element.currentTime = vocalList[2] - 1;
                //gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
-               gainNode.gain.exponentialRampToValueAtTime(1.0, 0.01);
+               gainNode.gain.setTargetAtTime(1.0, audioContext.currentTime, 0.01);
 
                setTimeout(function(){
                  //gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
-                 gainNode.gain.exponentialRampToValueAtTime(0.001, element.currentTime + 0.01);
+                 gainNode.gain.setTargetAtTime(0, audioContext.currentTime, 0.01);
 
                },900);
 
@@ -129,11 +130,11 @@ function initialStuff(){
            setTimeout(function(){
                 element.currentTime = vocalList[3] - 1;
                 //gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
-                gainNode.gain.exponentialRampToValueAtTime(1.0, 0.01);
+                gainNode.gain.setTargetAtTime(1.0, audioContext.currentTime, 0.01);
 
                 setTimeout(function(){
                   //gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
-                  gainNode.gain.exponentialRampToValueAtTime(0.001, element.currentTime + 0.01);
+                  gainNode.gain.setTargetAtTime(0, audioContext.currentTime, 0.01);
 
                 },900);
 
