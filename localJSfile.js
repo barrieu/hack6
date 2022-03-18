@@ -3,7 +3,7 @@
 // ************************************************************
 
 const jsPsych = initJsPsych();
-console.log("setting up as ver 5 ");
+console.log("setting up as ver 6 ");
 
 function initialStuff(){
     var timeline = [];
@@ -45,26 +45,10 @@ function initialStuff(){
          // FIRST Tone
          // *************************************
          element.currentTime = vocalList[0] - 1;
-         // gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
-         //
-         // setTimeout(function(){
-         //   gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
-         //   console.log("ramp down started @ " + audioContext.currentTime);
-         // },900);
-         //
-         // element.play();
-         // console.log("PLAYING A   " + element.currentTime);
-         // var k = setInterval(function(){
-         //   element.pause();
-         //   clearInterval(k);
-         //   console.log("STOPPED A @ " + element.currentTime);
-         // },1000);
-
-         gainNode.gain.setTargetAtTime(1.0, audioContext.currentTime, 0.01);
+         gainNode.gain.setTargetAtTime(1.0, audioContext.currentTime, 0.1);
 
          setTimeout(function(){
            gainNode.gain.setTargetAtTime(0, audioContext.currentTime, 0.01);
-           console.log("ramp down started @ " + element.currentTime);
          },900);
 
          element.play();
@@ -72,21 +56,15 @@ function initialStuff(){
          var k = setInterval(function(){
            element.pause();
            clearInterval(k);
-           console.log("STOPPED A @ " + element.currentTime);
          },1000);
-
-
-
          // *************************************
          // SECOND Tone
          // *************************************
          setTimeout(function(){
               element.currentTime = vocalList[1] - 1;
-              //gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
-              gainNode.gain.setTargetAtTime(1.0, audioContext.currentTime, 0.01);
+              gainNode.gain.setTargetAtTime(1.0, audioContext.currentTime, 0.1);
 
               setTimeout(function(){
-                //gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
                 gainNode.gain.setTargetAtTime(0, audioContext.currentTime, 0.01);
               },900);
 
@@ -95,23 +73,17 @@ function initialStuff(){
               var k = setInterval(function(){
                 element.pause();
                 clearInterval(k);
-                console.log("STOPPED B");
               },1000);
-
             },1500);
-
           // *************************************
           // THIRD Tone
           // *************************************
           setTimeout(function(){
                element.currentTime = vocalList[2] - 1;
-               //gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
-               gainNode.gain.setTargetAtTime(1.0, audioContext.currentTime, 0.01);
+               gainNode.gain.setTargetAtTime(1.0, audioContext.currentTime, 0.1);
 
                setTimeout(function(){
-                 //gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
                  gainNode.gain.setTargetAtTime(0, audioContext.currentTime, 0.01);
-
                },900);
 
                element.play();
@@ -119,23 +91,17 @@ function initialStuff(){
                var k = setInterval(function(){
                  element.pause();
                  clearInterval(k);
-                 console.log("STOPPED C");
                },1000);
-
              },3000);
-
            // *************************************
            // FOURTH Tone
            // *************************************
            setTimeout(function(){
                 element.currentTime = vocalList[3] - 1;
-                //gainNode.gain.exponentialRampToValueAtTime(1.0, audioContext.currentTime + 0.1);
-                gainNode.gain.setTargetAtTime(1.0, audioContext.currentTime, 0.01);
+                gainNode.gain.setTargetAtTime(1.0, audioContext.currentTime, 0.1);
 
                 setTimeout(function(){
-                  //gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
                   gainNode.gain.setTargetAtTime(0, audioContext.currentTime, 0.01);
-
                 },900);
 
                 element.play();
@@ -143,11 +109,8 @@ function initialStuff(){
                 var k = setInterval(function(){
                   element.pause();
                   clearInterval(k);
-                  console.log("STOPPED D");
                 },1000);
-
               },4500);
-
         };
 
     // *************************************
@@ -158,7 +121,7 @@ function initialStuff(){
       console.log(tonesToPlay[0] + " " + tonesToPlay[1] + " "  + tonesToPlay[2] + " "  + tonesToPlay[3]);
       playTheTones([ tonesToPlay[0],tonesToPlay[1],tonesToPlay[2],tonesToPlay[3] ]);
       jsPsych.pauseExperiment();
-      setTimeout(jsPsych.resumeExperiment, 6000);
+      setTimeout(jsPsych.resumeExperiment, 5800);
     };
 
     // *************************************
