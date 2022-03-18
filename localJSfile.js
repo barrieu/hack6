@@ -3,7 +3,7 @@
 // ************************************************************
 
 const jsPsych = initJsPsych();
-console.log("setting up as ver (gorilla) 1 ");
+console.log("setting up as ver (gorilla) 2 ");
 
 function initialStuff(){
     var timeline = [];

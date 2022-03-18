@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My experiment</title>
+
+    <audio id="audio" src="pure_400Hz_tone.ogg" preload="auto"></audio>
+
+  </head>
+
+  <body>
+    <div id="jspsych_target"></div>
+    <button onclick="dummyPress()">Press to Activate Audio</button>
+    <button onclick="playTheTones()">sound the tone</button>
+  </body>
+
+  <script>
+  console.log("setting up audiocontext at ver (first) 3 ");
+  const audioContext = new AudioContext();
+  const element = document.querySelector("audio");
+  const source = audioContext.createMediaElementSource(element);
+  const gainNode = audioContext.createGain();
+
+  //gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+
+  source.connect(gainNode);
+  gainNode.connect(audioContext.destination);
+  gainNode.gain.value = 0;
+
+  function dummyPress(){
+    audioContext.resume();
+    playTheTones();
+  };
+
+
+  function playTheTones(){
+
+    // ******* The First Tone ***********
+    // **********************************
+       source.currentTime = 2;
+       gainNode.gain.setTargetAtTime(1.0, audioContext.currentTime, 0.01);
+
+       var g = setTimeout(function(){
+         gainNode.gain.setTargetAtTime(0, audioContext.currentTime, 0.01);
+         console.log("start Down @   " + source.currentTime);
+       },700);
+
+       source.mediaElement.play();
+
+       console.log("PLAYING 2 now @   " + source.currentTime);
+       var k = setTimeout(function(){
+         source.mediaElement.pause();
+         console.log("STOPPED @   " + source.currentTime);
+       },1100);
+
+       // ******* The Second Tone ***********
+       // **********************************
+       setTimeout(function(){
+         source.currentTime = 52;
+         gainNode.gain.setTargetAtTime(1.0, audioContext.currentTime, 0.01);
+
+         var h = setTimeout(function(){
+           gainNode.gain.setTargetAtTime(0, audioContext.currentTime, 0.01);
+           console.log("start Down @   " + source.currentTime);
+         },700);
+
+         source.mediaElement.play();
+
+         console.log("PLAYING 52 now @   " + source.currentTime);
+         var j = setTimeout(function(){
+           source.mediaElement.pause();
+           console.log("STOPPED @   " + source.currentTime);
+         },1100);
+       },1500);
+
+  };
+
+
+  </script>
+</html>
