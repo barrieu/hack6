@@ -7,11 +7,8 @@
     <script src="https://unpkg.com/@jspsych/plugin-call-function@1.1.0"></script>
     <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
 
-    <!-- <audio id = "audio" src = "oodlesOfSounds.ogg" preload = "auto"></audio> -->
     <script type = "text/javascript" src="localJSfile.js"></script>
     <script type = "text/javascript" src="createToneList.js"></script>
-    <!-- <script type = "text/javascript" src="audioStuff.js"></script> -->
-
   </head>
 
   <body>
@@ -23,19 +20,9 @@
 
     function dummyPress(){
       console.log("Activating Audio Context");
-      //setTimeout(function(){
-          var timeline = initialStuff();
-          jsPsych.run(timeline);
-      //},5000);
+      var timeline = initialStuff();
+      jsPsych.run(timeline);
     };
-
-    // function afterWait(){
-    //     var timeline = initialStuff();
-    //     jsPsych.run(timeline);
-    // };
-    //
-    // setTimeout(afterWait,5000);
-
 
   </script>
 </html>

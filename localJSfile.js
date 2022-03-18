@@ -3,7 +3,7 @@
 // ************************************************************
 
 const jsPsych = initJsPsych();
-console.log("setting up as ver 6 ");
+console.log("setting up as ver 7 ");
 
 function initialStuff(){
     var timeline = [];
@@ -28,7 +28,6 @@ function initialStuff(){
     // setup the audio context
     // *************************************
     const audioContext = new AudioContext();
-    //const element = new Audio("oodlesOfSounds.ogg");
     const element = new Audio("250_1_hz_tones.ogg");
     const source = audioContext.createMediaElementSource(element);
     const gainNode = audioContext.createGain();
