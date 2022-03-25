@@ -3,7 +3,7 @@
 // ************************************************************
 
 const jsPsych = initJsPsych();
-console.log("setting up as ver (gorilla) 6 ");
+console.log("setting up as ver (gorilla) 7 ");
 
 function initialStuff(){
     var timeline = [];
@@ -170,6 +170,7 @@ function initialStuff(){
         }
         if (reversal_count === reversal_limit){
           console.log("reached the end of reversals");
+          reversal_count = 0;                           // ready for next block
           jsPsych.endCurrentTimeline();
         }
       }
@@ -216,8 +217,16 @@ function initialStuff(){
      };
      //timeline.push(loop_node_2);
 
+
+     const nextBlock = {
+       type: jsPsychHtmlKeyboardResponse,
+       stimulus: 'nextBlock!',
+       choices: "NO_KEYS",
+       trial_duration: 5000
+     };
+
      var loop_node_1 = {
-       timeline:[ loop_node_2, loop_node_2],
+       timeline:[ loop_node_2, nextBlock, loop_node_2, nextBlock],
        repetitions: 1
      };
      timeline.push(loop_node_1);
