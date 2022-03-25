@@ -3,7 +3,7 @@
 // ************************************************************
 
 const jsPsych = initJsPsych();
-console.log("setting up as ver (gorilla) 7 ");
+console.log("setting up as ver (gorilla) 8 ");
 
 function initialStuff(){
     var timeline = [];
@@ -23,6 +23,7 @@ function initialStuff(){
     var previous_direction = '-';
     var latest_direction   = '-';
     var reversal_count = 0;
+    var blockCount = 1;
 
     // *************************************
     // setup the audio context
@@ -170,11 +171,10 @@ function initialStuff(){
         }
         if (reversal_count === reversal_limit){
           console.log("reached the end of reversals");
-          reversal_count = 0;                           // ready for next block
           jsPsych.endCurrentTimeline();
         }
       }
-      console.log(" DIRECTION STUFF " + reversal_count + "  " + previous_direction + "  " + latest_direction);
+      console.log(" DIRECTION STUFF " + reversal_count + "  " + previous_direction + "  " + latest_direction + "block = " + blockCount);
       console.log("    ");
 
       previous_direction = latest_direction;
@@ -220,9 +220,27 @@ function initialStuff(){
 
      const nextBlock = {
        type: jsPsychHtmlKeyboardResponse,
-       stimulus: 'nextBlock!',
+       stimulus: 'nextBlock ',
        choices: "NO_KEYS",
-       trial_duration: 5000
+       trial_duration: 5000,
+       on_finish: function() {
+         tonesToPlay = [1,1,1,1];
+         deviant_location = '-';
+         standard_tone = 1;
+         init_deviant_tone = standard_tone + 250;
+         deviant_tone = init_deviant_tone;
+         init_decrement = 25;
+         init_increment = 75;
+         later_decrement = 10;
+         later_increment = 30;
+         reversal_limit = 3;     //should be 20
+         present_decrement = init_decrement;
+         present_increment = init_increment;
+         previous_direction = '-';
+         latest_direction   = '-';
+         reversal_count = 0;
+         blockCount = blockCount + 1
+       }
      };
 
      var loop_node_1 = {
