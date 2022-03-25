@@ -3,7 +3,7 @@
 // ************************************************************
 
 const jsPsych = initJsPsych();
-console.log("setting up as ver (gorilla) 4 ");
+console.log("setting up as ver (gorilla) 6 ");
 
 function initialStuff(){
     var timeline = [];
@@ -214,7 +214,13 @@ function initialStuff(){
        timeline: [playTheTonesTrial, collectUserKey, calculateNextDeviant],
        repetitions: 60
      };
-     timeline.push(loop_node_2);
+     //timeline.push(loop_node_2);
+
+     var loop_node_1 = {
+       timeline:[ loop_node_2, loop_node_2],
+       repetitions: 1
+     };
+     timeline.push(loop_node_1);
 
      const goodbye_trial = {
        type: jsPsychHtmlKeyboardResponse,
